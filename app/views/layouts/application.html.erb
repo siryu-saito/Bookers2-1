@@ -4,24 +4,66 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+  <header class="mb-3">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand p-1" href="/">Bookers</a>
+        <buttom class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </buttom>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto">
+            <% if user_signed_in? %>
+            <li class="nav-item mr-3 my-2">
+              <%= link_to ' Home', user_path(current_user.id), class:"fas fa-home text-light" %>
+            </li>
+            <li class="nav-item mr-3 my-2">
+              <%= link_to ' Users', users_path, class:"fas fa-users text-light" %>
+            </li>
+            <li class="nav-item mr-3 my-2">
+              <%= link_to ' Books', books_path, class:"fas fa-book-open text-light" %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to ' logout', destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt text-light" %>
+            </li>
+            <% else %>
+            <li class="nav-item mr-3 my-2">
+              <%= link_to ' Home', root_path, class:"fas fa-home text-light" %>
+            </li>
+            <li class="nav-item mr-3 my-2">
+              <%= link_to ' About', home_about_path, class:"fas fa-link text-light" %>
+            </li>
+            <li class="nav-item mr-3 my-2">
+              <%= link_to " sign up", new_user_registration_path, class:"fas fa-user-plus text-light" %>
+            </li>
+            <li class="nav-item my-2">
+              <%= link_to " login", new_user_session_path, class:"fas fa-sign-in-alt text-light" %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
   <body>
-    <% if user_signed_in? %>
-      <li>
-        <%= link_to "logout", destroy_user_session_path, method: :delete %>
-      </li>
-      <% else %>
-      <li>
-        <%= link_to "sign up", new_user_registration_path %>
-      </li>
-      <li>
-        <%= link_to "login", new_user_session_path %>
-      </li>
-    <% end %>
+    <p class="text-success">
+      <%= flash[:notice] %>
+    </p>
     <%= yield %>
   </body>
+
+  <footer>
+    <div class="container mt-5">
+      <div class="row d-flex justify-content-center">
+        <p>CopyRight Infratop.inc</p>
+      </div>
+    </div>
+  </footer>
 </html>
