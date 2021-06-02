@@ -6,6 +6,6 @@ Rails.application.routes.draw do
   resources :books, only: [:index, :edit, :show, :update, :destroy, :create]
   resources :users, only: [:index, :edit, :show, :update]
 
-  post 'favorite/:id' => 'favorites#create', as: 'create_like'
+  post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
 
 end
