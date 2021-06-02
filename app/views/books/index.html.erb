@@ -30,12 +30,12 @@
             <th><%= link_to attachment_image_tag(book.user, :profile_image, :fill, 100, 100, format: 'jpeg', fallback: "no_image.jpg"), user_path(book.user_id) %></th>
             <td><%= link_to book.title, book_path(book.id) %></td>
             <td><%= book.body %></td>
+            <% if current_user.liked_by?(book.id) %>
+              <td><%= link_to '❤️', destroy_favorite_path(book.id), method: :DELETE %> <%= book.favorites.count %></td>
+            <% else %>
+              <td><%= link_to '♡',  create_favorite_path(book.id), method: :POST %>  <%= book.favorites.count %></td>
+            <% end %>
           </tr>
-          <% if current_user.liked_by?(book.id) %>
-            <td><%= link_to '❤️', destroy_favorite_path(book.id), method: :DELETE %></td>
-          <% else %>
-            <td><%= link_to '♡',  create_favorite_path(book.id), method: :POST %></td>
-          <% end %>
         </tbody>
         <% end %>
       </table>
