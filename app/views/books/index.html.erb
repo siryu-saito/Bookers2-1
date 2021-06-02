@@ -31,6 +31,11 @@
             <td><%= link_to book.title, book_path(book.id) %></td>
             <td><%= book.body %></td>
           </tr>
+          <% if current_user.liked_by?(book.id) %>
+            <td>いいねを外す</td>
+          <% else %>
+            <td>いいね</td>
+          <% end %>
         </tbody>
         <% end %>
       </table>

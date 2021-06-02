@@ -11,4 +11,8 @@ class User < ApplicationRecord
   has_many :favorites
   attachment :profile_image
   
+  def liked_by?(post_id)
+    favorites.where(post_id: post_id).exists
+  end
+  
 end
