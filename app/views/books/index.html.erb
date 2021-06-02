@@ -32,9 +32,9 @@
             <td><%= book.body %></td>
           </tr>
           <% if current_user.liked_by?(book.id) %>
-            <td>いいねを外す</td>
+            <td><%= link_to '❤️', destroy_favorite_path(book.id), method: :DELETE %></td>
           <% else %>
-            <td><%= link_to 'いいね',  create_favorite_path(book), method: :POST %></td>
+            <td><%= link_to '♡',  create_favorite_path(book.id), method: :POST %></td>
           <% end %>
         </tbody>
         <% end %>

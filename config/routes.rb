@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :users, only: [:index, :edit, :show, :update]
 
   post 'favorite/:id' => 'favorites#create', as: 'create_favorite'
+  delete 'favorite/:id' => 'favorites#destroy', as: 'destroy_favorite'
 
 end
