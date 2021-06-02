@@ -34,7 +34,7 @@
           <% if current_user.liked_by?(book.id) %>
             <td>いいねを外す</td>
           <% else %>
-            <td>いいね</td>
+            <td><%= link_to 'いいね',  create_favorite_path(book), method: :POST %></td>
           <% end %>
         </tbody>
         <% end %>
